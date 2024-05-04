@@ -1,10 +1,9 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-subscription',
   standalone: true,
-  imports: [AsyncPipe],
+  imports: [],
   template: `
     <div>TestId: {{ testId() }}</div>
     <div>Permission: {{ permission() }}</div>
