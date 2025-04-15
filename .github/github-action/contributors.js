@@ -8,9 +8,23 @@ const contributors = [
   'webbomj',
   'kabrunko-dev',
   'Sanjar1304',
+  'tsironis13',
+  'EnochGao',
 ];
 
-const sponsors = ['ddotx', 'LMFinney', 'alannelucq', 'SidV2'];
+const sponsors = [
+  'ddotx',
+  'LMFinney',
+  'alannelucq',
+  'SidV2',
+  'fpalmab',
+  'CivilEngeneer',
+  'apalaio',
+  'amosISA',
+  'michalgrzegorczyk-dev',
+  'zealotrahl',
+  'DzoeL123',
+];
 
 module.exports = {
   contributors,
