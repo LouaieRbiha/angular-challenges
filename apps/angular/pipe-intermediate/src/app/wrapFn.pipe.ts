@@ -5,10 +5,10 @@ import { Pipe, PipeTransform } from '@angular/core';
   standalone: true,
 })
 export class WrapFnPipe implements PipeTransform {
-  transform<R, F extends (...args: any[]) => R>(
-    func: F,
-    ...args: Parameters<F>
-  ) {
+  transform<R, Args extends unknown[]>(
+    func: (...args: Args) => R,
+    ...args: Args
+  ): R {
     return func(...args);
   }
 }

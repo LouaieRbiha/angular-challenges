@@ -7,10 +7,16 @@ import { WrapFnPipe } from './wrapFn.pipe';
   imports: [NgFor, WrapFnPipe],
   selector: 'app-root',
   template: `
-    <div *ngFor="let person of persons; let index = index; let isFirst = first">
-      {{ showName | wrapFn: person.name : index }}
-      {{ isAllowed | wrapFn: person.age : isFirst }}
-    </div>
+    <ng-container>
+      <div
+        *ngFor="let person of persons; let index = index; let isFirst = first">
+        {{ getSomething.bind(this) | wrapFn: person.name : index }}
+        {{ isAllowed | wrapFn: person.age : isFirst }}
+        {{ boundComputeHeavy | wrapFn: 10 }}
+        <br />
+      </div>
+      <button (click)="callFn()">CD</button>
+    </ng-container>
   `,
 })
 export class AppComponent {
@@ -20,9 +26,15 @@ export class AppComponent {
     { name: 'John', age: 30 },
   ];
 
+  boundComputeHeavy = this.computeHeavy.bind(this);
+
   showName(name: string, index: number) {
     // very heavy computation
     return `${name} - ${index}`;
+  }
+
+  getSomething(name: string, index: number) {
+    return this.showName(name, index);
   }
 
   isAllowed(age: number, isFirst: boolean) {
@@ -31,5 +43,15 @@ export class AppComponent {
     } else {
       return age > 25 ? 'allowed' : 'declined';
     }
+  }
+
+  computeHeavy(n: number): number {
+    console.log('called');
+    if (n <= 1) return n;
+    return this.computeHeavy(n - 1) + this.computeHeavy(n - 2);
+  }
+
+  callFn() {
+    console.log('click event called');
   }
 }
